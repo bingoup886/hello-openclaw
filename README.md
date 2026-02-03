@@ -1,0 +1,1 @@
+OpenClaw is an open-source, modular, and highly customizable assistant framework. It allows users to create their own personalized assistants using a variety of tools and skills.
