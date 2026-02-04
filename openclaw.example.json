@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "name": "Hello OpenClaw 示例助手",
+    "version": "1.0.0",
+    "description": "这是一个OpenClaw的示例配置，展示如何配置个性化AI助手"
+  },
+  "gateway": {
+    "port": 3000,
+    "mode": "production",
+    "bind": "0.0.0.0",
+    "auth": {
+      "mode": "token",
+      "token": "your-secure-token-here"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": "deepseek/deepseek-chat",
+      "workspace": "./workspace",
+      "thinking": "off",
+      "compaction": {
+        "mode": "safeguard",
+        "maxContextTokens": 32000
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "deepseek": {
+        "baseUrl": "https://api.deepseek.com/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "deepseek-chat",
+            "name": "DeepSeek Chat",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "auto",
+            "name": "OpenRouter Auto",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": false,
+      "botToken": "your-telegram-bot-token-here",
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist"
+    },
+    "discord": {
+      "enabled": false,
+      "token": "your-discord-bot-token-here"
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  }
+}
