@@ -1,0 +1,33 @@
+{
+  "name": "hello-openclaw",
+  "version": "1.0.0",
+  "description": "OpenClaw示例项目 - 个性化AI助手框架",
+  "main": "index.js",
+  "engines": {
+    "node": "20.19.0"
+  },
+  "scripts": {
+    "dev": "echo '启动OpenClaw开发服务器...' && openclaw-cn dev",
+    "build": "echo '构建OpenClaw项目...'",
+    "preview": "echo '预览构建结果...'",
+    "deploy:pages": "echo '部署到Cloudflare Pages...' && wrangler pages deploy ./dist --project-name=hello-openclaw",
+    "deploy:workers": "echo '部署Cloudflare Workers...' && wrangler deploy",
+    "configure": "openclaw-cn configure"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-assistant",
+    "cloudflare",
+    "workers",
+    "pages",
+    "chatbot"
+  ],
+  "author": "bingoup886",
+  "license": "ISC",
+  "dependencies": {
+    "openclaw-cn": "^2026.2.5"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
